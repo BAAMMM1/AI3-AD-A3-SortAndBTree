@@ -3,7 +3,7 @@ package quicksort;
 /**
  * Repräsentation eines Schlüssel-Wert-Paares.
  */
-public class SchluesselWertPaar<T extends Comparable<T>, U> {
+public class SchluesselWertPaar<T extends Comparable<T>, U> {  // U = Parameter von T
     /**
      * Schlüssel.
      */

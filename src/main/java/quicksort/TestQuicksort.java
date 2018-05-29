@@ -59,6 +59,8 @@ public class TestQuicksort {
         //ausgeben("nachher: ", daten);
     }
 
+    // TODO - Test für ZUFALL, VORWÄRTS
+
     /**
      * Hilfsmethode zur Ausgabe eines Arrays auf der Konsole.
      *

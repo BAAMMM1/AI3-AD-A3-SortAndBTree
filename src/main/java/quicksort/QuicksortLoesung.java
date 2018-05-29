@@ -1,5 +1,7 @@
 package quicksort;
 
+import quicksort.pivotStrategie.PivotStrategyMedian;
+
 /**
  * @author ${user} on ${date}
  */

@@ -1,4 +1,4 @@
-package quicksort;
+package quicksort.pivotStrategie;
 
 import quicksort.SchluesselWertPaar;
 

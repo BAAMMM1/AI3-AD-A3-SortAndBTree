@@ -1,4 +1,4 @@
-package quicksort;
+package quicksort.pivotStrategie;
 
 /**
  * @author ${user} on ${date}

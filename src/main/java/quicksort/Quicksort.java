@@ -1,5 +1,7 @@
 package quicksort;
 
+import quicksort.pivotStrategie.PivotStrategie;
+
 /**
  * Basisklasse für die Implementierung des Quicksort-Algorithmus.
  */
