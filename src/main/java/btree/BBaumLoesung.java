@@ -1,7 +1,7 @@
 package btree;
 
 /**
- * @author ${user} on ${date}
+ * @author Christian 
  */
 
 public class BBaumLoesung extends BBaum<Integer, String> {
