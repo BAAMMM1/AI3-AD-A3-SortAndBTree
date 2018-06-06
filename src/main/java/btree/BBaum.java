@@ -90,7 +90,7 @@ public abstract class BBaum<T extends Comparable<T>, U> {
     }
 
     /**
-     * Liefer die Element in der Pre-order Reihenfolge.
+     * Liefert die Element in der Pre-order Reihenfolge.
      *
      * @return
      */
@@ -122,7 +122,7 @@ public abstract class BBaum<T extends Comparable<T>, U> {
     }
 
     /**
-     * Fügt das Element in den Knoten ein. Liefert den neuen Wurzelknoten des Baumes zurück.
+     * Fügt das Element in den Knoten ein. Liefert den neuen Wurzelknoten des Baumes zurück. // TODO - Warum void, soll der Wurzelknoten gesetzt werden?
      *
      * @param schluessel Schlüssel des Elementes, das in den aktuellen Knoten eingefügt werden soll
      * @param wert       Wert des Elementes.

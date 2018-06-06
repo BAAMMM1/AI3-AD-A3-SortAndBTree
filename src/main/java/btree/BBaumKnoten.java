@@ -36,7 +36,7 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
     }
 
     /**
-     * Liefert wahr, wenn der Knoten mindestens einen nicht-null Kindknoten hat, sonst wahr.
+     * Liefert falsch, wenn der Knoten mindestens einen nicht-null Kindknoten hat, sonst wahr. // TODO - wahr?
      */
     public boolean istBlattknoten() {
         for (BBaumKnoten<T, U> kind : kinder) {
