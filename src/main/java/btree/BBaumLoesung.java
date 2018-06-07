@@ -7,14 +7,15 @@ package btree;
  * @author Christian 
  */
 
-public class BBaumLoesung extends BBaum<Integer, String> {
+public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
 
     public BBaumLoesung(int i) {
         super(i);
     }
 
     @Override
-    public void einfuegen(Integer schluessel, String wert) {
+    public void einfuegen(T schluessel, U wert) {
 
     }
+
 }
