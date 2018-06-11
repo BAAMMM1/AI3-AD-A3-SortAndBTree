@@ -21,8 +21,7 @@ public class TestBBaum {
      * Mit dieser Instanz wird getestet.
      */
     // TODO: Legen Sie hier eine Instanz Ihrer Implementierung an.
-    private BBaum<Integer, String> baum = null;
-            //new BBaumLoesung<>(2); // TODO <>
+    private BBaum<Integer, String> baum = new BBaumLoesung<Integer, String>(2);
 
     @Test
     public void testEinfuegen() {
@@ -50,6 +49,7 @@ public class TestBBaum {
             assertTrue(preOrderElemente.get(i).getSchluessel().
                     compareTo(preOrderElemente.get(i + 1).getSchluessel()) <= 0);
         }
+
     }
 
     @Test

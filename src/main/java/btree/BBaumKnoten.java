@@ -26,6 +26,13 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
      */
     private BBaumKnoten<T, U> elternknoten = null;
 
+    // TODO - Nei hinzugefügt von mir
+    public BBaumKnoten() {
+        schluesseWertPaare = new ArrayList<SchluesselWertPaar<T, U>>();
+        kinder = new ArrayList<>();
+        // Durch addSchluesselWertPaar beim ersten Element wie Konstruktor unten
+
+    }
 
     public BBaumKnoten(SchluesselWertPaar<T, U> element) {
         schluesseWertPaare = new ArrayList<SchluesselWertPaar<T, U>>();

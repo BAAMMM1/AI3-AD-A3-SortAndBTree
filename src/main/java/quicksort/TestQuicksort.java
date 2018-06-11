@@ -62,6 +62,32 @@ public class TestQuicksort {
         //ausgeben("nachher: ", daten);
     }
 
+    @Test
+    public void testZufall() {
+        SchluesselWertPaar<Integer, String>[] daten = generiereDaten(10, DatenGenerierung.ZUFALL);
+        //ausgeben("vorher: ", daten);
+
+        qs.sortiere(daten);
+        for (int i = 0; i < daten.length - 1; i++) {
+            assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
+        }
+
+        ausgeben("nachher: ", daten);
+    }
+
+    @Test
+    public void testReihenfolge() {
+        SchluesselWertPaar<Integer, String>[] daten = generiereDaten(10, DatenGenerierung.IN_REIHENFOLGE);
+        //ausgeben("vorher: ", daten);
+
+        qs.sortiere(daten);
+        for (int i = 0; i < daten.length - 1; i++) {
+            assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
+        }
+
+        //ausgeben("nachher: ", daten);
+    }
+
     // TODO - Test für ZUFALL, VORWÄRTS
 
     /**
