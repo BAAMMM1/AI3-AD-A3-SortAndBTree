@@ -19,6 +19,12 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
     }
 
 
+    /**
+     * Fügt das Element in den Knoten ein.
+     *
+     * @param schluessel Schlüssel des Elementes, das in den aktuellen Knoten eingefügt werden soll
+     * @param wert       Wert des Elementes.
+     */
     @Override
     public void einfuegen(T schluessel, U wert) {
 
@@ -35,6 +41,13 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
 
     }
 
+    /**
+     * Diese Methode fügt dem BBaum ein SchluesselWertPaar an der richtigen Position hinzu.
+     * Dabei wird der zum Schlüssel passende Blattknoten rekursiv ermittelt.
+     *
+     * @param node Aktueller Knoten des Rekusrsionsschritt.
+     * @param toAdd SchlüsselWertPaar
+     */
     private void addSchluesselWertPaar(BBaumKnoten<T, U> node, SchluesselWertPaar<T, U> toAdd) {
 
 
@@ -60,9 +73,16 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
     }
 
 
+    /**
+     * Methode zum ermittelt des zum Schlüssel passenden Kindknotens.
+     *
+     * @param node
+     * @param toAdd
+     * @return
+     */
     private BBaumKnoten<T, U> getMatchingChildNode(BBaumKnoten<T, U> node, SchluesselWertPaar<T, U> toAdd) {
 
-        // Bestimmen des richtien Kindknoten (In welchen Kind Knoten muss der Schlüssel eingefügrt werden)
+        // Frage: In welchen Kind Knoten muss der Schlüssel eingefügt werden?
 
         int index = 0;
         while (index < node.getAnzahlKinder()
@@ -75,9 +95,15 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
 
     }
 
+    /**
+     * Ermittelt die Position für den Schlüssel im Knoten.
+     *
+     * @param node
+     * @param toAdd
+     * @return
+     */
     private int getRightPosition(BBaumKnoten<T, U> node, SchluesselWertPaar<T, U> toAdd) {
 
-        // Bestimmung des Index in einem Knoten für einen Schlüssel der in einen Knoten eingefügt werden soll
         int index = 0;
         while (index < node.getAnzahlSchluesselWertPaare()
                 && node.getSchluesselWertPaar(index).getSchluessel().compareTo(toAdd.getSchluessel()) < 0) {
@@ -88,6 +114,12 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
         return index;
     }
 
+    /**
+     * Trennt einen übergebenen Knoten in zwei neue Knoten und fügt den mittleren Schlüssel in seinen Elternknoten ein.
+     * Anschließend wird rekursiv überprüft ob der Elternknoten überläuft.
+     *
+     * @param node
+     */
     private void splitNode(BBaumKnoten<T, U> node) {
 
         // Teilen: Knoten ab der Mitte in zwei neue Knoten, Referenz in den Eltern Knoten
@@ -124,18 +156,26 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
     }
 
 
+    /**
+     * Erstellt einen Sub-Knoten für eine übergebene Range und gibt diesen zurück.
+     *
+     * @param node
+     * @param rangeStart
+     * @param rangeEnd
+     * @return
+     */
     // Eklusiv right
-    private BBaumKnoten subNode(BBaumKnoten<T, U> node, int left, int right) {
+    private BBaumKnoten subNode(BBaumKnoten<T, U> node, int rangeStart, int rangeEnd) {
 
-        BBaumKnoten<T, U> newNode = new BBaumKnoten<>();
+        BBaumKnoten<T, U> subNode = new BBaumKnoten<>();
 
-        for (int i = left; i < right; i++) {
-            newNode.addSchluesselWertPaar(i - left, node.getSchluesselWertPaar(i));
+        for (int i = rangeStart; i < rangeEnd; i++) {
+            subNode.addSchluesselWertPaar(i - rangeStart, node.getSchluesselWertPaar(i));
 
         }
 
 
-        return newNode;
+        return subNode;
     }
 
 

@@ -122,7 +122,7 @@ public abstract class BBaum<T extends Comparable<T>, U> {
     }
 
     /**
-     * Fügt das Element in den Knoten ein. Liefert den neuen Wurzelknoten des Baumes zurück. // TODO - Warum void, soll der Wurzelknoten gesetzt werden?
+     * Fügt das Element in den Knoten ein. Liefert den neuen Wurzelknoten des Baumes zurück. //
      *
      * @param schluessel Schlüssel des Elementes, das in den aktuellen Knoten eingefügt werden soll
      * @param wert       Wert des Elementes.
