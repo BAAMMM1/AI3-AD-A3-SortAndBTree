@@ -8,6 +8,7 @@ import quicksort.SchluesselWertPaar;
 public class PivotStrategieFix implements PivotStrategie {
     @Override
     public <T extends Comparable<T>, U> int getIndex(SchluesselWertPaar<T, U>[] a, int iLinks, int iRechts) {
-        return 0;
+        // Fixe Position soll erste Position sein im Array
+        return iLinks;
     }
 }
