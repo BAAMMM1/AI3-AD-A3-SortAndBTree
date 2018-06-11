@@ -1,6 +1,8 @@
 package quicksort;
 
 import quicksort.pivotStrategie.PivotStrategie;
+import quicksort.pivotStrategie.PivotStrategieFix;
+import quicksort.pivotStrategie.PivotStrategieMedian;
 import quicksort.pivotStrategie.PivotStrategieRandom;
 
 import java.util.Arrays;
@@ -33,7 +35,7 @@ public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U
 
 
             int i = iLinks;
-            int j = iRechts;
+            int j = iRechts-1;
 
             int pivotIndex = this.pivotStrategy.getIndex(a, iLinks, iRechts);
 
@@ -45,6 +47,7 @@ public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U
             // Was hat sich zur Standardimplementierung geändert, der Pivotwert ist nicht mehr ganz rechts.
             // Funktioniert weil der Algortihmus standardmaßig immer das pivot hatte, wenn es nicht
             //rechts ist funktioniert diese Implementierung nicht richtig
+            // Pivot wird nicht betrachtet, deshlab nach rechts schieben
             swap(a, pivotIndex, iRechts);
 
 
@@ -61,7 +64,6 @@ public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U
                     j--;
                 }
 
-                //System.out.println("l: " + i + " - r: " + j);
 
                 if (i >= j) {
                     // in der Mitte getroffen
@@ -69,14 +71,11 @@ public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U
                 }
 
 
-
                 this.swap(a, i, j);
-                //System.out.println(Arrays.toString(a));
 
             }
 
-            this.swap(a, i, iRechts);
-            //System.out.println(Arrays.toString(a));
+            this.swap(a, i, iRechts); // Pivot element an die Stelle schieben, an der es die linke und recht hälfte trennt
             this.sort(a, iLinks, i - 1);
             this.sort(a, i + 1, iRechts);
 
@@ -95,7 +94,7 @@ public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U
 
     public static void main(String[] args) {
 
-        Quicksort<Integer, String> quicksort = new QuicksortLoesung<Integer, String>(new PivotStrategieRandom());
+        Quicksort<Integer, String> quicksort = new QuicksortLoesung<Integer, String>(new PivotStrategieFix());
         SchluesselWertPaar<Integer, String>[] a = new SchluesselWertPaar[8];
         a[0] = new SchluesselWertPaar<Integer, String>(6, "F");
         a[1] = new SchluesselWertPaar<Integer, String>(5, "E");
