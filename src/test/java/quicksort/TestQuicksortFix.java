@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Testklasse für das Quicksort-Verfahren.
  */
-public class TestQuicksort {
+public class TestQuicksortFix {
 
     /**
      * Verschiedene Konstanzen für die Generierung von Testdaten in der Methode generierDaten().
