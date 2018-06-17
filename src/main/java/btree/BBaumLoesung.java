@@ -13,7 +13,7 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
 
 
     /**
-     * Gibt die maximale Kapazität eines Knoten an
+     * Gibt die maximale Kapazität eines Knoten an innerhalbt des Baumes an
      */
     private final int nodeCapacity;
 
@@ -27,7 +27,6 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
         super(order);
         this.nodeCapacity = 2 * order - 1;
     }
-
 
     /**
      * Fügt das Element in den Baum ein.
