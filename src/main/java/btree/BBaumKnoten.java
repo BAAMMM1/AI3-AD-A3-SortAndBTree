@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repräsentation eines Knotens in einem B-Baum. Die Elemente, die im Knoten als Schlüssel repräsentiert werden,
- * müssen sortierbar sein.
+ * Repräsentation eines Knotens in einem B-Baum. Die Elemente, die im Knoten als Schlüssel repräsentiert werden, müssen
+ * sortierbar sein.
  */
 public class BBaumKnoten<T extends Comparable<T>, U> {
 
@@ -26,13 +26,6 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
      */
     private BBaumKnoten<T, U> elternknoten = null;
 
-    // TODO - Nei hinzugefügt von mir
-    public BBaumKnoten() {
-        schluesseWertPaare = new ArrayList<SchluesselWertPaar<T, U>>();
-        kinder = new ArrayList<>();
-        // Durch addSchluesselWertPaar beim ersten Element wie Konstruktor unten
-
-    }
 
     public BBaumKnoten(SchluesselWertPaar<T, U> element) {
         schluesseWertPaare = new ArrayList<SchluesselWertPaar<T, U>>();
@@ -62,8 +55,8 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
     }
 
     /**
-     * Fügt ein Element als Schlüssel an dem gegebenen Index ein (vor dem Schlüssel, der bisher an der Stelle
-     * stand). Fügt außerdem automatisch eine null-Kindknoten-Referenz ein.
+     * Fügt ein Element als Schlüssel an dem gegebenen Index ein (vor dem Schlüssel, der bisher an der Stelle stand).
+     * Fügt außerdem automatisch eine null-Kindknoten-Referenz ein.
      */
     public void addSchluesselWertPaar(int index, SchluesselWertPaar<T, U> element) {
         if (schluesseWertPaare.size() == 0) {
@@ -95,14 +88,16 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
     }
 
     /**
-     * Fügt einen neuen Schlüssel ein, setzt den Kindknoten links des Schlüssels und fügt einen neuen Kindknoten
-     * rechts des Schlüssels ein.
+     * Fügt einen neuen Schlüssel ein, setzt den Kindknoten links des Schlüssels und fügt einen neuen Kindknoten rechts
+     * des Schlüssels ein.
      */
     public void schluesselUndKindEinfuegen(BBaumKnoten<T, U> linkerKnoten, SchluesselWertPaar<T, U> teiler,
                                            BBaumKnoten<T, U> rechterKnoten) {
         // Finde index des Teiler
         int index = -1;
-        if (teiler.getSchluessel().compareTo(getSchluesselWertPaar(0).getSchluessel()) < 0) {
+        if (this.getAnzahlSchluesselWertPaare() == 0) { // TODO - Änderung hier, wegen der der neuen Wurzel
+            index = 0;
+        } else if (teiler.getSchluessel().compareTo(getSchluesselWertPaar(0).getSchluessel()) < 0) {
             index = 0;
         } else if (teiler.getSchluessel().compareTo(getSchluesselWertPaar(getAnzahlSchluesselWertPaare() - 1).
                 getSchluessel()) > 0) {
@@ -226,6 +221,41 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
         }
         ergebnis += "";
         return ergebnis;
+    }
+
+
+    /*
+    --------------- Hinzugefügt ---------------
+     */
+
+    /**
+     * Konstruktor der einen neuen leeren Baumknoten erstellt.
+     * Der erste Kind null Eintrag wie beim vorgegebenen Konstruktor wird beim ersten addSchluesselWertPaar erzeugt.
+     */
+    public BBaumKnoten() {
+        schluesseWertPaare = new ArrayList<SchluesselWertPaar<T, U>>();
+        kinder = new ArrayList<>();
+    }
+
+
+    /**
+     * Erstellt einen Sub-Knoten für eine übergebene Range und gibt diesen zurück.
+     *
+     * @param rangeStart Start-Index inklusive
+     * @param rangeEnd  End-Index exklusive
+     * @return neuen Knoten mit SchlüsselwertPaaren entsprechend der übergebenen Range
+     */
+    // Eklusiv right
+    public BBaumKnoten subNode(int rangeStart, int rangeEnd) {
+
+        BBaumKnoten<T, U> subNode = new BBaumKnoten<T, U>();
+
+        for (int i = rangeStart; i < rangeEnd; i++) {
+            subNode.addSchluesselWertPaar(i - rangeStart, this.getSchluesselWertPaar(i));
+
+        }
+
+        return subNode;
     }
 }
 
