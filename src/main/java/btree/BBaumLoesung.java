@@ -28,6 +28,7 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
         this.nodeCapacity = 2 * order - 1;
     }
 
+
     /**
      * Fügt das Element in den Baum ein.
      *
