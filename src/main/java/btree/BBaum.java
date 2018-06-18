@@ -90,7 +90,7 @@ public abstract class BBaum<T extends Comparable<T>, U> {
     }
 
     /**
-     * Liefer die Element in der Pre-order Reihenfolge.
+     * Liefert die Element in der Pre-order Reihenfolge.
      *
      * @return
      */
