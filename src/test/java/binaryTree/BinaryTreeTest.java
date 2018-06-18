@@ -1,5 +1,6 @@
-package BinaryTree;
+package binaryTree;
 
+import BinaryTree.BinaryTree;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
