@@ -34,17 +34,17 @@ public class BinaryTreeNode<T extends Comparable<T>, U> {
      *
      * @return maximum aus linker und rechter Teilbaumhöhe.
      */
-    public int getHight() {
-        int leftHight = 0;
-        int rightHight = 0;
+    public int getHeight() {
+        int leftHeight = 0;
+        int rightHeight = 0;
 
         if (this.left != null)
-            leftHight = left.getHight() + 1;
+            leftHeight = left.getHeight() + 1;
 
         if (this.right != null)
-            rightHight = right.getHight() + 1;
+            rightHeight = right.getHeight() + 1;
 
-        return Math.max(leftHight, rightHight);
+        return Math.max(leftHeight, rightHeight);
     }
 
 

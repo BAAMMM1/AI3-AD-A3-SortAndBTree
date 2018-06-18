@@ -76,15 +76,15 @@ public class BinaryTree<T extends Comparable<T>, U> {
      *
      * @return falls balanciert true, sonst false
      */
-    public boolean isHightBalanced() {
+    public boolean isHeightBalanced() {
 
-        int leftHight = 0;
-        int rightHight = 0;
+        int leftHeight = 0;
+        int rightHeight = 0;
 
-        if (this.root.getLeft() != null) leftHight = this.root.getLeft().getHight() + 1; // +1 wegen this.root.getLeft() weg zum left muss auch gezählt werden
-        if (this.root.getRight() != null) rightHight = this.root.getRight().getHight() + 1;
+        if (this.root.getLeft() != null) leftHeight = this.root.getLeft().getHeight() + 1; // +1 wegen this.root.getLeft() weg zum left muss auch gezählt werden
+        if (this.root.getRight() != null) rightHeight = this.root.getRight().getHeight() + 1;
 
-        return Math.max(leftHight, rightHight) - Math.min(leftHight, rightHight) <= 1;
+        return Math.max(leftHeight, rightHeight) - Math.min(leftHeight, rightHeight) <= 1;
     }
 
 
@@ -93,11 +93,11 @@ public class BinaryTree<T extends Comparable<T>, U> {
      *
      * @return Höhe des Baumes
      */
-    public int getTreeHight() {
+    public int getTreeHeight() {
 
         if (this.root == null) return 0;
 
-        return this.root.getHight();
+        return this.root.getHeight();
 
     }
 
