@@ -1,9 +1,5 @@
 package btree;
 
-//muss angepasst werden!!!
-//import SortierAlgorithmus; // TODO
-//import BBaumLoesung;        // TODO
-
 import org.junit.Test;
 import quicksort.SchluesselWertPaar;
 
@@ -20,7 +16,6 @@ public class TestBBaum {
     /**
      * Mit dieser Instanz wird getestet.
      */
-    // TODO: Legen Sie hier eine Instanz Ihrer Implementierung an.
     private BBaum<Integer, String> baum = new BBaumLoesung<Integer, String>(2);
 
     @Test

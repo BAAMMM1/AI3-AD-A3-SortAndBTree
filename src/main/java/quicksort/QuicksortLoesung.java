@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U> {
 
     public QuicksortLoesung(PivotStrategie pivotStrategy) {
-        super(pivotStrategy); // TODO nicht null hier
+        super(pivotStrategy);
     }
 
 

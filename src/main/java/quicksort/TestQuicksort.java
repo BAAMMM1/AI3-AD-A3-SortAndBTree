@@ -1,9 +1,5 @@
 package quicksort;
 
-//muss angepasst werden!!!
-//import PivotStrategieMedian; // TODO
-//import QuicksortLoesung;    // TODO
-
 import org.junit.Test;
 import quicksort.pivotStrategie.PivotStrategieFix;
 import quicksort.pivotStrategie.PivotStrategieMedian;
@@ -26,9 +22,8 @@ public class TestQuicksort {
     /**
      * Mit dieser Instanz wird getestet.
      */
-    // TODO: Legen Sie hier eine Instanz Ihrer Implementierung an.
     Quicksort<Integer, String> qs =
-            new QuicksortLoesung<Integer, String>(new PivotStrategieMedian()); // TODO - <>
+            new QuicksortLoesung<Integer, String>(new PivotStrategieMedian());
 
     private SchluesselWertPaar<Integer, String>[] generiereDaten(int anzahl, DatenGenerierung datenGenerierung) {
         SchluesselWertPaar<Integer, String>[] daten = new SchluesselWertPaar[anzahl];
@@ -87,8 +82,6 @@ public class TestQuicksort {
 
         //ausgeben("nachher: ", daten);
     }
-
-    // TODO - Test für ZUFALL, VORWÄRTS
 
     /**
      * Hilfsmethode zur Ausgabe eines Arrays auf der Konsole.

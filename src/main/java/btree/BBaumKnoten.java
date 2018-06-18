@@ -36,7 +36,7 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
     }
 
     /**
-     * Liefert falsch, wenn der Knoten mindestens einen nicht-null Kindknoten hat, sonst wahr. // TODO - wahr?
+     * Liefert falsch, wenn der Knoten mindestens einen nicht-null Kindknoten hat, sonst wahr
      */
     public boolean istBlattknoten() {
         for (BBaumKnoten<T, U> kind : kinder) {
@@ -95,7 +95,7 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
                                            BBaumKnoten<T, U> rechterKnoten) {
         // Finde index des Teiler
         int index = -1;
-        if (this.getAnzahlSchluesselWertPaare() == 0) { // TODO - Änderung hier, wegen der der neuen Wurzel
+        if (this.getAnzahlSchluesselWertPaare() == 0) { // Änderung hier, wegen der der neuen Wurzel
             index = 0;
         } else if (teiler.getSchluessel().compareTo(getSchluesselWertPaar(0).getSchluessel()) < 0) {
             index = 0;
