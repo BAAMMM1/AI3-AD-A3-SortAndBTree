@@ -23,13 +23,12 @@ public class BinaryTree<T extends Comparable<T>, U> {
      */
     public void einfuegen(T key, U value) {
 
-        BinaryTreeNode<T, U> toAdd = new BinaryTreeNode<T, U>(new SchluesselWertPaar<T, U>(key, value));
+        BinaryTreeNode<T, U> toAdd = new BinaryTreeNode<>(new SchluesselWertPaar<>(key, value));
 
         if (this.root == null)
             root = toAdd;
         else
             this.einfuegen(this.root, toAdd);
-
 
     }
 
@@ -41,7 +40,7 @@ public class BinaryTree<T extends Comparable<T>, U> {
      * @param node  aktueller Knoten
      * @param toAdd Knoten der in den Baum einsortiert werden soll
      */
-    public void einfuegen(BinaryTreeNode<T, U> node, BinaryTreeNode<T, U> toAdd) {
+    private void einfuegen(BinaryTreeNode<T, U> node, BinaryTreeNode<T, U> toAdd) {
 
         if (toAdd.getData().getSchluessel().compareTo(node.getData().getSchluessel()) < 0) {
             // falls der neue Schlüssel kleiner als der aktuelle Knoten Schlüsselwert ist, muss der Knoten entweder
@@ -83,9 +82,7 @@ public class BinaryTree<T extends Comparable<T>, U> {
         if (this.root.getLeft() != null) leftHight = this.root.getLeft().getHight() + 1; // +1 wegen this.root.getLeft() weg zum left muss auch gezählt werden
         if (this.root.getRight() != null) rightHight = this.root.getRight().getHight() + 1;
 
-        if (Math.max(leftHight, rightHight) - Math.min(leftHight, rightHight) > 1) return false;
-
-        return true;
+        return Math.max(leftHight, rightHight) - Math.min(leftHight, rightHight) <= 1;
     }
 
 

@@ -23,7 +23,7 @@ public class BinaryTreeNode<T extends Comparable<T>, U> {
     /**
      * Konstruktor, erstellt einen neuen Knoten mit übergebenen Daten
      *
-     * @param data
+     * @param data SchlüsselWertPaar für den Knoten
      */
     public BinaryTreeNode(SchluesselWertPaar<T, U> data) {
         this.data = data;

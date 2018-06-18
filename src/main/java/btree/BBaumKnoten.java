@@ -246,7 +246,7 @@ public class BBaumKnoten<T extends Comparable<T>, U> {
      * @return neuen Knoten mit SchlüsselwertPaaren entsprechend der übergebenen Range
      */
     // Eklusiv right
-    public BBaumKnoten subNode(int rangeStart, int rangeEnd) {
+    public BBaumKnoten<T, U> subNode(int rangeStart, int rangeEnd) {
 
         BBaumKnoten<T, U> subNode = new BBaumKnoten<T, U>();
 

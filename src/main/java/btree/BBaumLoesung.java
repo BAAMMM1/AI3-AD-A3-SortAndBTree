@@ -44,10 +44,10 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
         if (this.findeWertZuSchluessel(schluessel) != null) throw new IllegalArgumentException("key already exists");
 
         // Wurzelknoten falls null neuanlegen
-        if (this.wurzel == null) this.wurzel = new BBaumKnoten<T, U>();
+        if (this.wurzel == null) this.wurzel = new BBaumKnoten<>();
 
         // 1. Starten beim Wurzelknoten
-        this.addSchluesselWertPaar(this.wurzel, new SchluesselWertPaar<T, U>(schluessel, wert));
+        this.addSchluesselWertPaar(this.wurzel, new SchluesselWertPaar<>(schluessel, wert));
 
     }
 
@@ -136,7 +136,7 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
             parentNode = toSplit.getElternknoten();
         } else {
             // Dieser Knoten ist die Wurzel, also ist die Wurzel übergelaufen. Es muss eine neue Wurzel erstellt werden
-            this.wurzel = new BBaumKnoten<T, U>();
+            this.wurzel = new BBaumKnoten<>();
             parentNode = this.wurzel;
         }
 
