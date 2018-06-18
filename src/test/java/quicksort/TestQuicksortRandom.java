@@ -1,5 +1,7 @@
 package quicksort;
 
+//muss angepasst werden!!!
+
 import org.junit.Test;
 import quicksort.pivotStrategie.PivotStrategieFix;
 import quicksort.pivotStrategie.PivotStrategieMedian;
@@ -10,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Testklasse für das Quicksort-Verfahren.
  */
-public class TestQuicksort {
+public class TestQuicksortRandom {
 
     /**
      * Verschiedene Konstanzen für die Generierung von Testdaten in der Methode generierDaten().
@@ -22,8 +24,9 @@ public class TestQuicksort {
     /**
      * Mit dieser Instanz wird getestet.
      */
+    // TODO: Legen Sie hier eine Instanz Ihrer Implementierung an.
     Quicksort<Integer, String> qs =
-            new QuicksortLoesung<Integer, String>(new PivotStrategieMedian());
+            new QuicksortLoesung<>(new PivotStrategieRandom()); // TODO - <>
 
     private SchluesselWertPaar<Integer, String>[] generiereDaten(int anzahl, DatenGenerierung datenGenerierung) {
         SchluesselWertPaar<Integer, String>[] daten = new SchluesselWertPaar[anzahl];
@@ -45,42 +48,39 @@ public class TestQuicksort {
     }
 
     @Test
-    public void test() {
+    public void testRueckwaerts() {
         SchluesselWertPaar<Integer, String>[] daten = generiereDaten(10, DatenGenerierung.RUECKWAERTS);
-        //ausgeben("vorher: ", daten);
+        ausgeben("vorher: ", daten);
 
         qs.sortiere(daten);
+        ausgeben("nachher: ", daten);                   ///
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        //ausgeben("nachher: ", daten);
     }
 
     @Test
     public void testZufall() {
         SchluesselWertPaar<Integer, String>[] daten = generiereDaten(10, DatenGenerierung.ZUFALL);
-        //ausgeben("vorher: ", daten);
+        ausgeben("vorher: ", daten);
 
         qs.sortiere(daten);
+        ausgeben("nachher: ", daten);               ///
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     @Test
-    public void testReihenfolge() {
+    public void testInReihenfolge() {
         SchluesselWertPaar<Integer, String>[] daten = generiereDaten(10, DatenGenerierung.IN_REIHENFOLGE);
-        //ausgeben("vorher: ", daten);
+        ausgeben("vorher: ", daten);
 
         qs.sortiere(daten);
+        ausgeben("nachher: ", daten);           ///
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        //ausgeben("nachher: ", daten);
     }
 
     /**

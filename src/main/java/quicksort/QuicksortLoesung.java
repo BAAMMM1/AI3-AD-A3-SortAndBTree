@@ -1,117 +1,90 @@
 package quicksort;
 
 import quicksort.pivotStrategie.PivotStrategie;
-import quicksort.pivotStrategie.PivotStrategieFix;
-import quicksort.pivotStrategie.PivotStrategieMedian;
-import quicksort.pivotStrategie.PivotStrategieRandom;
-
-import java.util.Arrays;
 
 /**
- * @author ${user} on ${date}
+ * @author Shadai on 07.06.2018
  */
-public class QuicksortLoesung<T extends Comparable<T>, U> extends Quicksort<T, U> {
-
+public class QuicksortLoesung<T extends Comparable<T>,U> extends Quicksort {
+    /**
+     * Auslagerung des übergeben Arrays in ein Instanzobjekt
+     * wird für jeden Sortiervorgang neu gesetzt
+     */
+    private SchluesselWertPaar<T,U>[] a;
+    /**
+     * Konstrucktor: Erstellt ein Quicksort für übergebene Pivotstategie.
+     * pivotStrategie darf nicht null sein.
+     *
+     * @param pivotStrategy
+     */
     public QuicksortLoesung(PivotStrategie pivotStrategy) {
         super(pivotStrategy);
     }
 
-
+    /**
+     * Sortiert das Array a in-situ.
+     * @param a Array mit Schlüssel-Wert-Paaren, die nach den Schlüsseln aufsteigend sortiert werden sollen.
+     */
     @Override
-    public void sortiere(SchluesselWertPaar<T, U>[] a) {
-
-        this.sort(a, 0, a.length-1);
-
-
-
-
+    public void sortiere(SchluesselWertPaar[] a) {
+        this.a = a;
+        qsortRange(0,a.length-1);
     }
 
-    public void sort(SchluesselWertPaar<T, U>[] a, int iLinks, int iRechts){
-
-        //System.out.println("ilinks: " + iLinks + " - iRechts: " + iRechts);
-
+    /**
+     * Hilfsmethode zum sortieren des Arrays.
+     * Innerhalb der gegeben Range wird ein Pivot nach einer Strategie gewählt
+     * und an richtiger Position fixiert. Anschließend wird rekrusiv
+     * diese Methode so lange ausgeführt, bis alle Schlüssel innerhalb der Range
+     * an der richtigen Position fixiert sind.
+     * @param iLinks gibt Index der linke Grenze des Arrays an
+     * @param iRechts gibt den rechten Index des Arrays an
+     */
+    private void qsortRange(int iLinks, int iRechts) {
         if (iRechts > iLinks) {
-
-
             int i = iLinks;
-            int j = iRechts-1;
+            // pivot muss isoliert betrachtet werden, daher wollen wir hier den pivot auf iRechts ausgelagern
+            // und nur den Rest betrachten
+            int j = iRechts -1;
 
-            int pivotIndex = this.pivotStrategy.getIndex(a, iLinks, iRechts);
+            int pivot = pivotStrategy.getIndex(a,iLinks,iRechts);
 
-            T pivot = a[pivotIndex].getSchluessel();
+            T pivotElement =this.a[pivot].getSchluessel();
 
-            //System.out.println(pivot);
-
-
-            // Was hat sich zur Standardimplementierung geändert, der Pivotwert ist nicht mehr ganz rechts.
-            // Funktioniert weil der Algortihmus standardmaßig immer das pivot hatte, wenn es nicht
-            //rechts ist funktioniert diese Implementierung nicht richtig
-            // Pivot wird nicht betrachtet, deshlab nach rechts schieben
-            swap(a, pivotIndex, iRechts);
-
-
+            // unabhängig der Strategie wird hier das pivot nach iRechts ausgelagert
+            swap(pivot, iRechts);
 
             while (true) {
-
-                // Wenn a[i] kleiner als pivot element, dann gehe zum nächsten element i++;
-                while (a[i].getSchluessel().compareTo(pivot) < 0) {
+                while (a[i].getSchluessel().compareTo(pivotElement) < 0) {
                     i++;
                 }
-
-                // So Lange a[j] größer oder gleich dem pivot gehe einen runter
-                while (a[j].getSchluessel().compareTo(pivot) >= 0 && j > 0) {
+                while (a[j].getSchluessel().compareTo(pivotElement) >= 0 && j > 0) {
                     j--;
                 }
-
-
                 if (i >= j) {
-                    // in der Mitte getroffen
                     break;
                 }
-
-
-                this.swap(a, i, j);
-
+                swap(i, j);
             }
-
-            this.swap(a, i, iRechts); // Pivot element an die Stelle schieben, an der es die linke und recht hälfte trennt
-            this.sort(a, iLinks, i - 1);
-            this.sort(a, i + 1, iRechts);
-
+            // hier muss das isolierte Pivot, welches sich in iRechts befindet,
+            // mit der Position von i getauscht werden.
+            // Das Pivot ist anschließend an der richtigen Position i fixiert.
+            swap(i,iRechts);
+            qsortRange(iLinks, i-1);
+            qsortRange(i+1,iRechts);
+            }
         }
 
+    /**
+     * Vertauscht die Postion der Schlüsselwertpaare innerhalb des Arrays
+     * @param x Entspricht dem Index des 1. Schlüsselwertpaares
+     * @param y Entspricht dem Index des 2. Schlüsselwertpaares
+     */
+    private void swap(int x, int y) {
+        SchluesselWertPaar<T,U> tmp = a[x];
+
+        a[x] = a[y];
+        a[y] = tmp;
     }
-
-    private void swap(SchluesselWertPaar<T, U>[] a, int i, int j) {
-
-        SchluesselWertPaar<T, U> temp;
-        temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-
-    }
-
-    public static void main(String[] args) {
-
-        Quicksort<Integer, String> quicksort = new QuicksortLoesung<Integer, String>(new PivotStrategieFix());
-        SchluesselWertPaar<Integer, String>[] a = new SchluesselWertPaar[8];
-        a[0] = new SchluesselWertPaar<Integer, String>(6, "F");
-        a[1] = new SchluesselWertPaar<Integer, String>(5, "E");
-        a[2] = new SchluesselWertPaar<Integer, String>(8, "H");
-        a[3] = new SchluesselWertPaar<Integer, String>(2, "B");
-        a[4] = new SchluesselWertPaar<Integer, String>(1, "A");
-        a[5] = new SchluesselWertPaar<Integer, String>(3, "C");
-        a[6] = new SchluesselWertPaar<Integer, String>(4, "D");
-        a[7] = new SchluesselWertPaar<Integer, String>(7, "G");
-
-        System.out.println(Arrays.toString(a));
-
-        quicksort.sortiere(a);
-
-        System.out.println(Arrays.toString(a));
-
-    }
-
 
 }
