@@ -43,6 +43,7 @@ public class BinaryTree<T extends Comparable<T>, U> {
     private void einfuegen(BinaryTreeNode<T, U> node, BinaryTreeNode<T, U> toAdd) {
 
         if (toAdd.getData().getSchluessel().compareTo(node.getData().getSchluessel()) < 0) {
+
             // falls der neue Schlüssel kleiner als der aktuelle Knoten Schlüsselwert ist, muss der Knoten entweder
             // linker Kindknoten werden oder weiter in den linken Teilbaum hinuntersteigen
 
@@ -54,6 +55,7 @@ public class BinaryTree<T extends Comparable<T>, U> {
             }
 
         } else {
+
             // falls der neue Schlüssel größer als der aktuelle Knoten Schlüsselwert ist, muss der Knoten entweder
             // rechter Kindknoten werden oder weiter in den rechten Teilbaum hinuntersteigen
 
