@@ -1,19 +1,19 @@
 package quicksort;
 
 import quicksort.pivotStrategie.PivotStrategie;
-import quicksort.pivotStrategie.PivotStrategieFix;
-import quicksort.pivotStrategie.PivotStrategieMedian;
-import quicksort.pivotStrategie.PivotStrategieRandom;
-
-import java.util.Arrays;
 
 /**
  * @author Shadai on 07.06.2018
  */
 public class QuicksortLoesung<T extends Comparable<T>,U> extends Quicksort {
+    /**
+     * Auslagerung des übergeben Arrays in ein Instanzobjekt
+     * wird für jeden Sortiervorgang neu gesetzt
+     */
     private SchluesselWertPaar<T,U>[] a;
     /**
-     * Konstrucktor.
+     * Konstrucktor: Erstellt ein Quicksort für übergebene Pivotstategie.
+     * pivotStrategie darf nicht null sein.
      *
      * @param pivotStrategy
      */
@@ -21,29 +21,39 @@ public class QuicksortLoesung<T extends Comparable<T>,U> extends Quicksort {
         super(pivotStrategy);
     }
 
+    /**
+     * Sortiert das Array a in-situ.
+     * @param a Array mit Schlüssel-Wert-Paaren, die nach den Schlüsseln aufsteigend sortiert werden sollen.
+     */
     @Override
     public void sortiere(SchluesselWertPaar[] a) {
         this.a = a;
         qsortRange(0,a.length-1);
     }
 
+    /**
+     * Hilfsmethode zum sortieren des Arrays.
+     * Innerhalb der gegeben Range wird ein Pivot nach einer Strategie gewählt
+     * und an richtiger Position fixiert. Anschließend wird rekrusiv
+     * diese Methode so lange ausgeführt, bis alle Schlüssel innerhalb der Range
+     * an der richtigen Position fixiert sind.
+     * @param iLinks gibt Index der linke Grenze des Arrays an
+     * @param iRechts gibt den rechten Index des Arrays an
+     */
     private void qsortRange(int iLinks, int iRechts) {
         if (iRechts > iLinks) {
             int i = iLinks;
-            int j = iRechts -1;             //pivot muss isoliert betrachtet werden, daher haben wir hier den pivot auf iRechts ausgelagert
-            //SchluesselWertPaar<T,U> pivot = a[pivotStrategy.getIndex(a,iLinks,iRechts)];
-//            int pivot = pivotStrategy.getIndex(a,iLinks,iRechts);
-            int pivot = pivotStrategy.getIndex(a,i,j);
+            // pivot muss isoliert betrachtet werden, daher wollen wir hier den pivot auf iRechts ausgelagern
+            // und nur den Rest betrachten
+            int j = iRechts -1;
+
+            int pivot = pivotStrategy.getIndex(a,iLinks,iRechts);
 
             T pivotElement =this.a[pivot].getSchluessel();
+
+            // unabhängig der Strategie wird hier das pivot nach iRechts ausgelagert
             swap(pivot, iRechts);
-//                      P
-//                1 2 3 4 5 6
-//            System.out.println("Pivot Schlüssel   " + a[pivot].getSchluessel()+" und Pivot Wert   "+ a[pivot].getWert()+"  vor Swap");
-//            System.out.println("iRechts Schlüssel " + a[iRechts].getSchluessel()+" und iRechts Wert "+ a[iRechts].getWert()+"  vor Swap");
-        //
-//            System.out.println("Pivot Schlüssel   " + a[pivot].getSchluessel()+" und Pivot Wert   "+ a[pivot].getWert()+" nach Swap");
-//            System.out.println("iRechts Schlüssel " + a[iRechts].getSchluessel()+" und iRechts Wert "+ a[iRechts].getWert()+" nach Swap");
+
             while (true) {
                 while (a[i].getSchluessel().compareTo(pivotElement) < 0) {
                     i++;
@@ -51,28 +61,25 @@ public class QuicksortLoesung<T extends Comparable<T>,U> extends Quicksort {
                 while (a[j].getSchluessel().compareTo(pivotElement) >= 0 && j > 0) {
                     j--;
                 }
-
                 if (i >= j) {
                     break;
                 }
-                // vertauschen
-               // System.out.println("Schlusselwert von i :"+a[i].getSchluessel()+"\nSchlüsselwert von j : "+a[j].getSchluessel());
                 swap(i, j);
             }
-
-
-            // hier musste irechts mit pivot gewechselt werden, damit immer der pivot nach strategie getauscht wird
-            // i befindet sich schon an der richtigen stelle des Pivots
-            //ausgelagerter Pivot wird nun an der Position von i fixiert
+            // hier muss das isolierte Pivot, welches sich in iRechts befindet,
+            // mit der Position von i getauscht werden.
+            // Das Pivot ist anschließend an der richtigen Position i fixiert.
             swap(i,iRechts);
             qsortRange(iLinks, i-1);
             qsortRange(i+1,iRechts);
-
-
             }
-
         }
 
+    /**
+     * Vertauscht die Postion der Schlüsselwertpaare innerhalb des Arrays
+     * @param x Entspricht dem Index des 1. Schlüsselwertpaares
+     * @param y Entspricht dem Index des 2. Schlüsselwertpaares
+     */
     private void swap(int x, int y) {
         SchluesselWertPaar<T,U> tmp = a[x];
 
@@ -80,24 +87,4 @@ public class QuicksortLoesung<T extends Comparable<T>,U> extends Quicksort {
         a[y] = tmp;
     }
 
-    public static void main(String[] args) {
-        QuicksortLoesung qs = new QuicksortLoesung(new PivotStrategieFix());
-        SchluesselWertPaar<Integer, String>[] a = new SchluesselWertPaar[5];
-        a[0]= new SchluesselWertPaar<>(25, "Hallo 1");
-        a[1]= new SchluesselWertPaar<>(24, "Hallo 2");
-        a[2]= new SchluesselWertPaar<>(23, "Hallo 3");
-        a[3]= new SchluesselWertPaar<>(22, "Hallo 4");
-        a[4]= new SchluesselWertPaar<>(21, "Hallo 5");
-
-        System.out.println("Unsortierte Liste ist: \n"+ Arrays.toString(a));
-        qs.sortiere(a);
-
-        System.out.println("Sortierte Liste ist: \n"+ Arrays.toString(a));
-        // wie gebe ich nun das ergebnis aus, er führt methode aus,
-        // bearbeitet this.a in seiner Methode, aber garbage collector sammelt
-        // das ja nach erfolgreichem sortieren wieder ein
-        // muss evtl sortiere ein SchlüsselWertPaarArray erstellen?
-        // oder behält er diese Information, weil qs noch aktiv ist?
-        // nur dann müsste er sich ja jeden Int, den man als Zähler erstellt hat, merken
-    }
 }

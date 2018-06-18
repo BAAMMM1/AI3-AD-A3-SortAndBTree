@@ -3,7 +3,7 @@ package quicksort.pivotStrategie;
 import quicksort.SchluesselWertPaar;
 
 /**
- * @author ${user} on ${date}
+ * @author Shadai on 07.06.2018
  */
 public class PivotStrategieFix implements PivotStrategie {
     @Override

@@ -4,6 +4,7 @@ package quicksort;
 
 import org.junit.Test;
 import quicksort.pivotStrategie.PivotStrategieFix;
+import quicksort.pivotStrategie.PivotStrategieMedian;
 import quicksort.pivotStrategie.PivotStrategieRandom;
 
 import static org.junit.Assert.assertTrue;
@@ -56,8 +57,6 @@ public class TestQuicksortRandom {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     @Test
@@ -70,8 +69,6 @@ public class TestQuicksortRandom {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     @Test
@@ -84,8 +81,6 @@ public class TestQuicksortRandom {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     /**

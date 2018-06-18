@@ -16,6 +16,7 @@ public abstract class Quicksort<T extends Comparable<T>, U> {
      * Konstrucktor.
      */
     public Quicksort(PivotStrategie pivotStrategy) {
+        if (pivotStrategy==null) throw new NullPointerException();
         this.pivotStrategy = pivotStrategy;
     }
 

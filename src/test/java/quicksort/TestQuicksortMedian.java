@@ -56,8 +56,6 @@ public class TestQuicksortMedian {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     @Test
@@ -70,8 +68,6 @@ public class TestQuicksortMedian {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     @Test
@@ -84,8 +80,6 @@ public class TestQuicksortMedian {
         for (int i = 0; i < daten.length - 1; i++) {
             assertTrue("Daten sind nicht korrekt sortiert", daten[i].getSchluessel().compareTo(daten[i + 1].getSchluessel()) <= 0);
         }
-
-        ausgeben("nachher: ", daten);
     }
 
     /**
