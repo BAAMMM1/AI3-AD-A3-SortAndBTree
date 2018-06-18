@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Testklasse für die BBaum-Implementierung.
+ *
+ * @author Christian
  */
 public class TestBBaum {
 
