@@ -109,23 +109,4 @@ public class BinaryTree<T extends Comparable<T>, U> {
                 '}';
     }
 
-    public static void main(String[] args) {
-        BinaryTree<Integer, Integer> binaryTree = new BinaryTree<Integer, Integer>();
-
-        System.out.println(binaryTree);
-        binaryTree.einfuegen(2, 2);
-        System.out.println(binaryTree);
-        binaryTree.einfuegen(1, 1);
-        System.out.println(binaryTree);
-        binaryTree.einfuegen(3, 3);
-        System.out.println(binaryTree);
-        binaryTree.einfuegen(4, 4);
-        System.out.println(binaryTree);
-        //binaryTree.einfuegen(5,5);
-        System.out.println(binaryTree);
-        System.out.println(binaryTree.getTreeHight());
-        System.out.println(binaryTree.isHightBalanced());
-
-
-    }
 }
