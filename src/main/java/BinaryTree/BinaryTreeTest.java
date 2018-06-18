@@ -9,7 +9,7 @@ import org.junit.Test;
  */
 public class BinaryTreeTest {
 
-    BinaryTree<Integer, Integer> binaryTree;
+    private BinaryTree<Integer, Integer> binaryTree;
 
     @Before
     public void init(){
